@@ -1,0 +1,56 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/message') %>
+
+<main>
+    <div class="row h-100">
+        <div class="col my-auto">
+            <div class="card" style="margin: auto; padding: 10px; width: 36rem;">
+                <div class="nes-container with-title">
+                    <h3 class="title">PLACE A WAGER</h3>
+                    <form action="/placeBet" method="POST">
+                        <div style="background-color:#212529; padding: 1rem;" class="nes-field is-dark">
+                            <div style="color: #f6c244; font-size: 12px;">Current Balance for Player 1,</div>
+                            <div style="color: #f6c244; font-size: 18px; margin-top: 8px; margin-bottom: 16px;"> <%= Username %>:</div>
+                            <label id="p1B" style="color: #ffffff; font-size: 24px;"><%= CurrencyBalance %></label>
+                            <p><br></p>
+                            <input id="p1Bf" name="p1Bf" type="hidden" value=""/>
+                            <div style="color: #b0b0b0; font-size: 12px;" >Current Balance for Player 2,</div>
+                            <div style="color: #b0b0b0; font-size: 18px; margin-top: 8px; margin-bottom: 16px;"> <%= Username2 %>:</div>
+                            <label id="p2B" name ="p2B" style="color: #ffffff; font-size: 24px;"><%= CurrencyBalance2 %></label>
+                            <p><br></p>
+                            <input id="p2Bf" name="p2Bf" type="hidden" value=""/>
+                            <input class="nes-input is-dark" disabled="disabled" type="hidden" id="content" value="<%= CurrencyBalance %>"></input>
+                            <input class="nes-input is-dark" disabled="disabled" type="hidden" id="content2" value="<%= CurrencyBalance2 %>"></input>
+                            <input type="number" id="dark_field" class="nes-input is-dark" placeholder="enter coin wager..." name="balanceInput" onkeyup="realTimeBalanceUpdater()">
+                            
+                            <script>
+                                function realTimeBalanceUpdater() {
+                                //this function populates label to whatever the user types in.
+                                  var x = document.getElementById("dark_field");
+                                  console.log(x.value);
+                                  var print1 = document.getElementById("p1B");
+                                  var print2 = document.getElementById("p2B");
+                                  console.log(content.value)
+                                  console.log("value 2" + content2.value)
+                                  //Mirroiring the Form Labels for Real time Updates
+                                  print1.innerHTML = (content.value - x.value);
+                                  print2.innerHTML = (content2.value - x.value);
+                                  //Updating the forms
+                                  document.getElementById("p1Bf").value = (content.value - x.value);
+                                  document.getElementById("p2Bf").value = (content2.value - x.value);
+                                }
+                            </script>
+                        </div>
+                        <button type="submit" style="float: right; margin-top: 25px; margin-left: 10px; margin-right: 10px;" class="nes-btn is-success">BET</button>
+                        <a href="/main">
+                            <button type="button" style="float: right; margin-top: 25px; margin-left: 10px; margin-right: 10px;" class="nes-btn">close</button>
+                        </a>
+                        <i class="nes-icon coin is-large" style="margin-top: 15px;"></i>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include ('../partials/footer') %>

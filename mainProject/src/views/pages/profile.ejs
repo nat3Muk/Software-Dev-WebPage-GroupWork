@@ -1,0 +1,50 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/message') %>
+
+<main>
+    <!-- Profile -->
+    <div class="container" style="padding-top: 60px;">
+        <div class="nes-container is-dark with-title" style="max-width: 960px; margin:auto;">
+            <h3 class="title">PROFILE</h3>
+            <div class="nes-container is-dark" style="margin-top: 30px; margin-bottom: 30px;">
+                <center>
+                    <% if (locals.Username == locals.Player1) { %>
+                        <form action="/changeUrl" method="GET">
+                            <button type = "submit" style="margin-bottom: 25px;" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Click Me To Change Your Profile Image"><img src=<%= ImageURL %>
+                                alt="Player1Image" height="200" width="200" /></button>
+                        </form>
+
+                        
+                    <% } else { %>
+                        <form action="/changeUrl2" method="GET">
+                            <button class="btn btn-secondary" style="margin-bottom: 25px;" type = "submit" data-toggle="tooltip" data-placement="top" title="Click Me To Change Your Profile Image"><img src=<%= ImageURL %>
+                                alt="Player2Image" height="200" width="200" /></button>
+                        </form>
+                    <% } %>
+                </center>
+                <!-- Table to Display Information -->
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="font-size: 22px; width: 30%;">Username: </td> <th style="font-size: 22px;"><%= Username %></th>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 22px;">Country:</td> <th style="font-size: 22px;"><%= Country %></th>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 22px;">Record:</td> <th style="font-size: 22px;"><%= TotalWins %> wins, <%= TotalLosses %> losses</th>    
+                    </tr>
+                    <tr>
+                        <td style="font-size: 22px;">Coins:</td> <th style="font-size: 22px;"><%= CurrencyBalance %></th>
+                    </tr>
+                </table>
+            </div>
+            <!-- [Back]Button to main -->
+            <div class="row">
+                <a href="/main">
+                    <button type="button" style="float:left;" class="nes-btn is-error">back</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include ('../partials/footer') %>
